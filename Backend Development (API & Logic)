@@ -1,0 +1,11 @@
+#### We'll use the Serverless Framework for this, as it greatly simplifies deploying Lambda and API Gateway.
+
+
+# Install Serverless Framework globally
+npm install -g serverless
+
+# Create a new project from a template
+sls create --template aws-nodejs --path cloudvault-backend
+cd cloudvault-backend
+npm init -y
+npm install aws-sdk
