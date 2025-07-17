@@ -1,0 +1,70 @@
+service: cloudvault-backend
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1 # Change to your region
+  # Link the IAM Role created in Phase 1
+  iam:
+    role: arn:aws:iam::<313406038962>:role/CloudVaultLambdaExecutionRole # ❗️ Replace with your role ARN
+
+functions:
+  listFiles:
+    handler: handler.listFiles
+    events:
+      - http:
+          path: files
+          method: get
+          cors: true
+          authorizer: # Protect this endpoint
+            name: cognitoAuthorizer
+            arn: arn:aws:cognito-idp:<us-east-1>:<313406038962>:userpool/<us-east-1_3134AzvJs>
+> # ❗️ Replace with your Cognito ARN
+
+  getUploadUrl:
+    handler: handler.getUploadUrl
+    events:
+      - http:
+          path: upload-url
+          method: get
+          cors: true
+          authorizer: # Protect this endpoint
+            name: cognitoAuthorizer
+            arn: arn:aws:cognito-idp:<us-east-1>:<313406038962>:userpool/<us-east-1_3134AzvJs> # ❗️ Replace
+
+  getDownloadUrl:
+    handler: handler.getDownloadUrl
+    events:
+      - http:
+          path: download-url/{key} # Use path parameter
+          method: get
+          cors: true
+          authorizer: # Protect this endpoint
+            name: cognitoAuthorizer
+            arn: arn:aws:cognito-idp:<us-east-1>:<313406038962>:userpool/<us-east-1_3134AzvJs> # ❗️ Replace
+
+  deleteFile:
+    handler: handler.deleteFile
+    events:
+      - http:
+          path: files/{key} # Use path parameter
+          method: delete
+          cors: true
+          authorizer: # Protect this endpoint
+            name: cognitoAuthorizer
+            arn: arn:aws:cognito-idp:<us-east-1>:<313406038962>:userpool/<us-east-1_3134AzvJs> # ❗️ Replace
+
+# Define the authorizer once
+resources:
+  Resources:
+    cognitoAuthorizer:
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        Name: cognito-authorizer
+        Type: COGNITO_USER_POOLS
+        IdentitySource: method.request.header.Authorization
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        ProviderARNs:
+          - arn:aws:cognito-idp:<region>:<us-east-1>:<313406038962>:userpool/<us-east-1_3134AzvJs> # ❗️ Replace
