@@ -1,60 +1,6 @@
 # Scalable-Cloud-File-Storage-System-with-AWS-S3
 Scalable Cloud File Storage System with AWS S3
 
-cloudvault-monorepo/
-├── .github/              # (Optional) For GitHub Actions CI/CD workflows
-│   └── workflows/
-├── backend/              # All backend code (Serverless Framework)
-│   ├── .gitignore
-│   ├── handler.js
-│   ├── package.json
-│   └── serverless.yml
-├── frontend/             # All frontend code (Create React App)
-│   ├── .gitignore
-│   ├── public/
-│   ├── src/
-│   │   ├── App.js
-│   │   ├── FileManager.js
-│   │   └── index.js
-│   └── package.json
-├── .gitignore            # Top-level gitignore for the whole project
-└── README.md             # The main project documentation
-Use code with caution.
-Top-Level .gitignore File
-Create a .gitignore file in the root of your project. This single file will handle ignore rules for both the frontend and backend, keeping your repository clean.
-Generated gitignore
-# General
-.DS_Store
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Backend specific (Serverless Framework)
-backend/.serverless/
-backend/node_modules/
-
-# Frontend specific (React)
-frontend/node_modules/
-frontend/build/
-frontend/.amplify/
-frontend/src/aws-exports.js
-
-# Amplify CLI
-amplify/.config/local-*
-amplify/mock-data
-amplify/backend/amplify-meta.json
-amplify/backend/awscloudformation/
-Use code with caution.
-Gitignore
-Top-Level README.md (The Master Guide)
-This is the most important file in your monorepo. It serves as the entry point for anyone visiting your GitHub page. It should explain the project as a whole and guide users on how to set up, run, and deploy both parts.
-Copy the following template into the README.md file in the root of your repository.
-Generated markdown
 # CloudVault: A Secure Cloud File Storage System (Monorepo)
 
 This repository contains the complete source code for CloudVault, a full-stack web application that provides secure, user-isolated file storage, similar to Google Drive or Dropbox. The project is built on a serverless AWS architecture.
