@@ -1,0 +1,5 @@
+#### Setup React Project & Install Dependencies
+
+npx create-react-app cloudvault-frontend
+cd cloudvault-frontend
+npm install aws-amplify @aws-amplify/ui-react axios
