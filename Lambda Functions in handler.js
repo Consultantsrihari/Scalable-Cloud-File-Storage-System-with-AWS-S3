@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3({ signatureVersion: 'v4', region: 'us-east-1' }); // Change to your region
-const BUCKET_NAME = 'cloudvault-user-files-jd-20231027'; // ❗️ Replace with your bucket name
+const BUCKET_NAME = 'venkatasrihari-bucket-1992035'; // ❗️ Replace with your bucket name
 
 // Helper to create a standard response
 const createResponse = (statusCode, body) => ({
