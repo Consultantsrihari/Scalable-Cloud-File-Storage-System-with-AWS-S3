@@ -1,0 +1,26 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::<venkatasrihari-bucket-1992035>/private/${cognito-identity.amazonaws.com:sub}/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::<venkatasrihari-bucket-1992035>",
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": "private/${cognito-identity.amazonaws.com:sub}/*"
+                }
+            }
+        }
+    ]
+}
+
+#### where venkatasrihari-bucket-1992035 replace with your bukect name
